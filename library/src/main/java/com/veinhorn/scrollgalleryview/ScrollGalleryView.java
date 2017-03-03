@@ -135,6 +135,14 @@ public class ScrollGalleryView extends LinearLayout {
         return this;
     }
 
+    public void removeItem(int index){
+        if(index < mListOfMedia.size()){
+            mListOfMedia.remove(index);
+            pagerAdapter.notifyDataSetChanged();
+            thumbnailsContainer.removeViewAt(index);
+        }
+    }
+
     /**
      * Set the current item displayed in the view pager.
      *
@@ -143,6 +151,7 @@ public class ScrollGalleryView extends LinearLayout {
      */
     public ScrollGalleryView setCurrentItem(int i) {
         viewPager.setCurrentItem(i, false);
+        scroll(thumbnailsContainer.getChildAt(i));
         return this;
     }
 
